@@ -11,7 +11,4 @@
 		<li><a href="?test=<?php echo $test; ?>"><?php echo $test; ?></a></li>
 		<?php endforeach; ?>
 	</ul>
-
-	<h2>Nieuwe maken</h2>
-	<p>Ga naar de <a href="add-test.php">toevoeg</a> pagina om een test toe te voegen</p>
 </div>
