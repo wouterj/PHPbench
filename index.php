@@ -17,9 +17,6 @@ require 'lib/main.php';
 		<h1>PHPbench</h1>
 
 		<ul>
-			<li>
-				<a href="?addTest">Toevoegen</a>
-			</li>
 			<li><a>Tests</a>
 				<ul>
 					<?php $i =0; foreach( glob(ROOT.'tests/*.php') as $test ) :
