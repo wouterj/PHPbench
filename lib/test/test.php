@@ -5,12 +5,25 @@
  *
  * This objects hold one single test and can run that test
  *
- * @propertie-write function $test The test that will run
- * @propertie string $name The name of the test
+ * @author Wouter J
+ * @since Version 1.0
  */
 class Test
 {
+	/**
+	 * The test that will run
+	 *
+	 * @access protected
+	 * @var Function
+	 */
 	protected $test;
+
+	/**
+	 * The name of the test
+	 *
+	 * @access protected
+	 * @var String
+	 */
 	protected $name;
 
 	/**
@@ -20,6 +33,7 @@ class Test
 	 *
 	 * @param string $name The name of the test
 	 * @param mixed $test The actual test
+	 * @return void
 	 */
 	public function __construct( $name, $test )
 	{
@@ -53,6 +67,8 @@ class Test
 	 * Run
 	 *
 	 * Run the test
+	 *
+	 * @return void
 	 */
 	public function run()
 	{

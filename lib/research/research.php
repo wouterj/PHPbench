@@ -7,19 +7,47 @@
  *
  * @author Wouter J
  * @since Version 1.0
- *
- * @property-write array $tests All tests in this research
- * @property string $name The name of the research
- * @property-read array $times The times resulsts
- * @property-read array $percentages The percentage results
- * @property-write int $repeat How much the test will repeated Default 1000
  */
 class Research
 {
+	/**
+	 * All tests in this research
+	 *
+	 * @access protected
+	 * @var Array
+	 */
 	protected $tests = Array();
+
+	/**
+	 * The name of the research
+	 *
+	 * @access protected
+	 * @var String
+	 */
 	protected $name;
+
+	/**
+	 * The times results
+	 *
+	 * @access protected
+	 * @var Array
+	 */
 	protected $times = Array();
+
+	/**
+	 * The percentage results
+	 *
+	 * @access protected
+	 * @var Array
+	 */
 	protected $percentages = Array();
+
+	/**
+	 * How may times the test would repeated. Default: 1000
+	 *
+	 * @access protected
+	 * @var Int
+	 */
 	protected $repeat = 1000;
 
 	/**
@@ -28,6 +56,7 @@ class Research
 	 * Set up the name of the research.
 	 *
 	 * @param string $name The name of the research
+	 * @return void
 	 */
 	public function __construct( $name )
 	{
@@ -40,6 +69,7 @@ class Research
 	 * With this method you can add tests to the research
 	 *
 	 * @param object $test The test object
+	 * @return void
 	 */
 	public function addTest( Test $test )
 	{
@@ -52,6 +82,7 @@ class Research
 	 * Set a number how much the test would repeated
 	 *
 	 * @param int $repeat The repeat count
+	 * @return void
 	 */
 	public function setRepeat( $repeat )
 	{
@@ -62,18 +93,23 @@ class Research
 	 * runTests
 	 *
 	 * Run all tests
+	 *
+	 * @return void
 	 */
 	public function runTests()
 	{
 		foreach( $this->tests as $name => $test )
 		{
 			ob_start();
-			$time = microtime(true);
+			Timer::start();
 			for( $i=0; $i < $this->repeat; $i++ )
 			{
+				Timer::setMarker('Test-'.$i.'-start');
 				$test->run();
+				Timer::setMarker('Test-'.$i.'-end');
 			}
-			$this->times[$name] = (microtime(true) - $time);
+			Timer::end();
+			$this->times[$name] = Timer::getResult();
 
 			unset($time);
 			ob_end_clean();
@@ -86,6 +122,8 @@ class Research
 	 * count percentages
 	 *
 	 * Count all percentages
+	 *
+	 * @return void
 	 */
 	protected function countPercentages()
 	{

@@ -16,17 +16,19 @@ foreach( $times as $name => $time )
 }
 
 ?>
-<div class=item>
-	<h4><?php echo $researchName; ?></h4>
-	<ul>
-		<?php foreach( $times as $name => $time ) : ?>
-		<li>
-			<div class=<?php echo $color[$name]; ?>><?php echo $perc[$name]; ?></div>
-			<p><?php echo $name; ?></p>
-			<small>
-				time: <?php echo round($time * 1E6); ?> &micro;s
-			</small>
-		</li>
-		<?php endforeach; ?>
-	</ul>
+<div id=content>
+	<div class=item>
+		<h4><?php echo $researchName; ?></h4>
+		<ul>
+			<?php foreach( $times as $name => $time ) : ?>
+			<li>
+				<div class=<?php echo $color[$name]; ?>><?php echo $perc[$name]; ?></div>
+				<p><?php echo $name; ?></p>
+				<small>
+					time: <?php echo round($time * 1E6); ?> &micro;s
+				</small>
+			</li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
 </div>

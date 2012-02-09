@@ -7,21 +7,13 @@ define('ROOT', getcwd().'\\');
 
 chdir(LIB);
 
-function __autoload( $name )
+function __autoload($className)
 {
-	chdir(LIB);
+	$className = ltrim($className);
+	$fileName = LIB;
+	$namespaces = explode('\\', $className);
 
-	if( is_dir(strtolower($name)) )
-	{
-		chdir($name);
-		if( file_exists(strtolower($name).'.php') )
-		{
-			require_once strtolower($name).'.php';
-		}
-	}
-}
+	$fileName .= implode(DIRECTORY_SEPARATOR, $namespaces).DIRECTORY_SEPARATOR.end($namespaces).'.php';
 
-function array_gem( $arr )
-{
-	return (array_sum($arr) / count($arr));
+    require strtolower($fileName);
 }
