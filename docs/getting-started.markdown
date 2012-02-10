@@ -10,7 +10,7 @@ Met PHPbench kun je meerdere tests met elkaar vergelijken, je ziet dan de tijd d
 Het installeren van PHPbench is heel eenvoudig. Je hoeft alleen de bestanden op een server te downloaden en je bent klaar.
 Om documenten te krijgen kun je het best gebruik maken van GIT. In GIT roep je dan de volgende code aan:
 
-    cd path/to/localhost
+    cd path/to/localhost/
     git clone http://github.com/WouterJ/PHPbench.git
 
 Hiermee wordt PHPbench geïnstalleerd in path/to/localhost, verander dit naar jou localhost path.
