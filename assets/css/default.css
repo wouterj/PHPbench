@@ -14,10 +14,10 @@ html, body, body *
 	outline: none;
 
 	font-family: inherit;
-	font-size: 13pt;
+	font-size: inherit;
 	font-style: normal;
 }
-html, body	{ width: 100%; height: 100%; font-family: 'helvetica', sans-serif; }
+html, body	{ width: 100%; height: 100%; font-family: 'helvetica', sans-serif; font-size: 13pt; }
 
 /*
  * De nav bar
@@ -189,6 +189,60 @@ button:active
 }
 
 /*
+ * Doc styles
+ */
+#content p
+{
+	line-height: 1.6;
+}
+#content a
+{
+	color: #c33;
+	text-decoration: none;
+}
+#content a:hover { text-decoration: underline; }
+#content h3
+{
+	font-size: 20pt;
+	padding-left: 10px;
+	border-left: 5px solid #c33;
+	margin: 20px 0 10px;
+}
+#content h4
+{
+	font-size: 16pt;
+	margin: 10px 0 5px;
+}
+
+#content code, #content pre
+{
+	background: #ddd;
+	border: 1px solid #ccc;
+	padding: 3px;
+	border-radius: 5px;
+	font-family: monospace;
+	font-size: 11pt;
+}
+#content code
+{
+	padding: 1px 3px;
+}
+#content pre
+{
+	margin: 10px;
+	padding: 10px;
+}
+#content pre code
+{
+	background: none;
+	border: none;
+	padding: 0;
+	border-radius: 0;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+/*
  * Page styles
  */
 body
@@ -219,6 +273,10 @@ header h1
 	font-size: 50pt;
 	line-height: 130px;
 	margin-left: 10px;
+}
+header h1 a
+{
+	text-decoration: none;
 	color: #333;
 }
 

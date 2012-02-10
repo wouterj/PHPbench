@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/main.php';
+require_once 'lib/markdown/markdown.php';
 
 ?>
 <!doctype html>
@@ -8,42 +8,27 @@ require 'lib/main.php';
 <head>
 	<link rel="stylesheet" type="text/css" href="assets/css/default.css">
 	<meta charset=utf-8>
-	<title>Welcome at PHPbench</title>
+	<title><?php if(isset($_GET['title'])) : echo ucwords(str_replace('-', ' ', $_GET['title'])); ?> :: PHPbench Documentatie <?php else : ?>PHPbench - A benchmark libary for PHP<?php endif; ?></title>
 </head>
 <body>
-	<nav>
-		<img src="assets/images/logo-small.png" alt="PHPbench">
+	<header style="padding-top: 50px;">
+		<img src="assets/images/logo-big.png">
+		<h1><a href="?">PHPbench</a></h1>
+	</header>
 
-		<h1>PHPbench</h1>
+	<div id="content">
+		<?php if(!isset($_GET['title'])) { $home = true; $_GET['title'] = 'home'; } else $home=false; ?>
+		<h2>Documentatie :: <?php echo ucwords(str_replace('-', ' ', $_GET['title'])); ?></h2>
 
-		<ul>
-			<li>
-				<a href="?addTest">Toevoegen</a>
-			</li>
-			<li><a>Tests</a>
-				<ul>
-					<?php $i =0; foreach( glob(ROOT.'tests/*.php') as $test ) :
-							$test = basename($test, '.php');
-							if( ++$i > 10 )
-								break;
-					 ?>
-						<li><a href="<?php echo '?test='.$test; ?>"><?php echo str_replace('-', ' ', $test); ?></a></li>
-					<?php endforeach; ?>
-				</ul>
-			</li>
-		</ul>
-	</nav>
-
-	<div id="page-wrap">
-		<?php
-			if( isset($_GET['test']) && file_exists(ROOT.'tests/'.$_GET['test'].'.php') ) 
-			{
-				require ROOT.'tests/'.$_GET['test'].'.php';
-				require LIB.'views/results.php';
-			}
-			elseif( isset($_GET['addTest']) )
-				require LIB.'views/addTest.php';
-			else
-				require LIB.'views/default.php';
-		?>
+		<?php echo Markdown(file_get_contents('docs'.DIRECTORY_SEPARATOR.$_GET['title'].'.markdown')); ?>
+		<?php if( $home == true ) : ?>
+			<br>
+			<ul>
+				<?php foreach( glob('docs/*.markdown') as $doc ) :
+						$doc = basename($doc, '.markdown');
+						if( $doc == 'home' ) continue; ?>
+				<li><a href="?title=<?php echo $doc; ?>"><?php echo ucwords(str_replace('-', ' ', $doc)); ?></a></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
 	</div>
