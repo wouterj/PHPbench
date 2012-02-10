@@ -7,6 +7,8 @@ define('ROOT', getcwd().'\\');
 
 chdir(LIB);
 
+define('PHPbench_VERSION', '1.0');
+
 function __autoload($className)
 {
 	$className = ltrim($className);
