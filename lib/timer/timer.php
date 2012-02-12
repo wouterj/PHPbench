@@ -75,9 +75,9 @@ class Timer
 	public static function getDiff( $marker1, $marker2 )
 	{
 		if( !isset(self::$markers[$marker1]) )
-			throw new InvalidArgumentException('The Marker('.$marker1.' has not been set');
+			throw new InvalidArgumentException('The Marker('.$marker1.') has not been set');
 		if( !isset(self::$markers[$marker2]) )
-			throw new InvalidArgumentException('The Marker('.$marker2.' has not been set');
+			throw new InvalidArgumentException('The Marker('.$marker2.') has not been set');
 
 
 		$diff = (self::$markers[$marker1] - self::$markers[$marker2]);
