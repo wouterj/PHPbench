@@ -25,11 +25,15 @@ $research->addTest(new Test('Pieter', function() {
 }));
 
 $research->addTest(new Test('Wouter', function() {
-    (mt_rand(0,1)&&print'a')||print'b';
+    echo (mt_rand(0,1)&&print'a')||print'b';
 }));
 
 $research->addTest(new Test('Martijn 3', function() {
     echo uniqid()%2===0?'a':'b';
+}));
+
+$research->addTest(new Test('vinTage', function() {
+    echo (mt_rand()&1&&print'a')||print'b';
 }));
 
 $research->runTests();
