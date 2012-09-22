@@ -1,9 +1,9 @@
 <?php
 
 chdir('lib');
-define('LIB', getcwd().'\\');
+define('LIB', getcwd().'/');
 chdir('..');
-define('ROOT', getcwd().'\\');
+define('ROOT', getcwd().'/');
 
 chdir(LIB);
 
@@ -15,7 +15,7 @@ function __autoload($className)
 	$fileName = LIB;
 	$namespaces = explode('\\', $className);
 
-	$fileName .= implode(DIRECTORY_SEPARATOR, $namespaces).DIRECTORY_SEPARATOR.end($namespaces).'.php';
+	$fileName .= implode('/', $namespaces).'/'.end($namespaces).'.php';
 
     require strtolower($fileName);
 }
